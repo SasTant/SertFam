@@ -44,7 +44,7 @@ def proses():
 
     convert("cpa ref-%s.docx" %str(rasma), "cpa ref-%s.pdf" %str(rasma))
 
-    label = teka.Label(cen_ut, text="Input Entry lagi / Tutup Program")
+    label = teka.Label(cen_ut, text="Sert. %s Selesai ! Input Entry lagi / Tutup Program !" %str(rasma))
     label.pack()
 
 
@@ -81,3 +81,4 @@ tombol9.pack()
 
 
 cen_ut.mainloop()
+
