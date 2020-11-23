@@ -30,6 +30,8 @@ def proses():
     else:
         sal_in()
 
+
+
     tpl = DocxTemplate('Python.docx')
     context = {1:{  "nama":"%s" %str(rasma),
                     "TTL":"%s" %str(rttl),
@@ -39,10 +41,15 @@ def proses():
                     "ship":"Onboard %s" %str(rprau)}
                }
 
-    tpl.render(context[1])
-    tpl.save("cpa ref-%s.docx" %str(rasma))
+    sref=("%s " % str(rref))
+    sasma = ("%s " % str(rasma))
+    sprau = str(rprau)
+    jenber = sref + sasma + sprau
 
-    convert("cpa ref-%s.docx" %str(rasma), "cpa ref-%s.pdf" %str(rasma))
+    tpl.render(context[1])
+    tpl.save("CPA2020FTR%s.docx" %jenber)
+
+    convert("CPA2020FTR%s.docx" %jenber, "C:/Users/QylaMeisya/Documents/Sertifikat Training Familiarrisasi ECDIS Photosop/sertfampy" )
 
     label = teka.Label(cen_ut, text="Sert. %s Selesai ! Input Entry lagi / Tutup Program !" %str(rasma))
     label.pack()
