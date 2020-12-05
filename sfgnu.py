@@ -34,7 +34,7 @@ def proses():
 
 
 
-    tpl = DocxTemplate('Grab_Tpl.docx')
+    tpl = DocxTemplate('Python.docx')
     context = {1:{  "nama":"%s" %str(rasma),
                     "TTL":"%s" %str(rttl),
                     "ref":"Ref: CPA-2020-FTR-%s"%str(rref),
@@ -58,10 +58,6 @@ def proses():
 lasma = teka.Label(cen_ut, text="Input Entry Nama lengkap").pack()
 asma = teka.Entry(cen_ut, width=70, borderwidth=5, fg='blue')
 asma.pack()
-
-# ecdis = teka.Checkbutton(cen_ut, text="ECDIS FMD-3200/3300", variable = ecd ) # width=70, borderwidth=5, fg='blue')
-# ecdis.pack()
-# lecdis = teka.Label(cen_ut, text="Input Entry Tipe ECDIS").pack()
 
 lecdis = teka.Label(cen_ut, text="Input angka 1 / 2 untuk Tipe ECDIS ( 1 : FMD 3300/3200 | 2 : FEA 2807/2107) ").pack()
 ecdis = teka.Entry(cen_ut, width=35, borderwidth=5, fg='blue')
