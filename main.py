@@ -1,3 +1,4 @@
+from tkinter import *
 import tkinter as teka
 from docxtpl import DocxTemplate
 from docx2pdf import convert
@@ -5,9 +6,23 @@ from docx2pdf import convert
 cen_ut = teka.Tk()
 cen_ut.title('Sertifikat Familiarisasi')
 
-def sal_in(): #salah input
-    ecdis.delete( 0,'end')
-    ecdis.insert(0, 'Masukan 1 atau 2, sesuai tipe ECDIS !!!')
+
+def sel():
+    if var.get() == 1:
+        teka.Label(cen_ut, text="Tipe ECDIS FMD - 3200/3300 ").pack(anchor = S )
+    elif var.get() == 2:
+        teka.Label(cen_ut, text="Tipe ECDIS FEA - 2107/2807 ").pack(anchor = S )
+
+
+def selhas():
+    if var.get() == 1:
+        recdisr = "FMD - 3300/3200"
+    elif var.get() == 2:
+        recdisr = "FEA - 2107/2807"
+    return recdisr
+
+var = IntVar()
+
 
 def proses():
 
@@ -16,35 +31,21 @@ def proses():
     rttl = ttl.get()
     rttt= ttt.get()
     rprau = prau.get()
-    recdis = ecdis.get()
-
-    if recdis.isnumeric():
-        angka_i = int(recdis)
-        if angka_i < 3 and angka_i > 0:
-            if angka_i == 1:
-                recdisr = "FMD - 3300/3200"
-            elif angka_i==2:
-                recdisr = "FEA - 2807/2107"
-        else:
-            sal_in()
-    else:
-        sal_in()
-
-
+    recdis=str(selhas())
 
     tpl = DocxTemplate('Python.docx')
     context = {1:{  "nama":"%s" %str(rasma),
                     "TTL":"%s" %str(rttl),
                     "ref":"Ref: CPA-2020-FTR-%s"%str(rref),
                     "TTT": "%s" %str(rttt),
-                    "ecdis": "ECDIS Model %s" % str(recdisr),
+                    "ecdis": "ECDIS Model %s" % str(recdis),
                     "ship":"Onboard %s" %str(rprau)}
                }
 
-    sref=("%s " % str(rref))
-    sasma = ("%s " % str(rasma))
+    sref= str(rref)
+    sasma = str(rasma)
     sprau = str(rprau)
-    jenber = sref + sasma + sprau
+    jenber = " "+ sref + " "+ sasma + " " + sprau
 
     tpl.render(context[1])
     tpl.save("CPA2020FTR%s.docx" %jenber)
@@ -58,14 +59,6 @@ def proses():
 lasma = teka.Label(cen_ut, text="Input Entry Nama lengkap").pack()
 asma = teka.Entry(cen_ut, width=70, borderwidth=5, fg='blue')
 asma.pack()
-
-# ecdis = teka.Checkbutton(cen_ut, text="ECDIS FMD-3200/3300", variable = ecd ) # width=70, borderwidth=5, fg='blue')
-# ecdis.pack()
-# lecdis = teka.Label(cen_ut, text="Input Entry Tipe ECDIS").pack()
-
-lecdis = teka.Label(cen_ut, text="Input angka 1 / 2 untuk Tipe ECDIS ( 1 : FMD 3300/3200 | 2 : FEA 2807/2107) ").pack()
-ecdis = teka.Entry(cen_ut, width=35, borderwidth=5, fg='blue')
-ecdis.pack()
 
 lttl = teka.Label(cen_ut, text="Input Entry Tanggal Lahir").pack()
 ttl = teka.Entry(cen_ut, width=70, borderwidth=5, fg='blue')
@@ -82,6 +75,12 @@ ttt.pack()
 lprau = teka.Label(cen_ut, text="Input Entry Nama Kapal").pack()
 prau = teka.Entry(cen_ut, width=70, borderwidth=5, fg='blue')
 prau.pack()
+
+R1 = Radiobutton(cen_ut, text="ECDIS FMD-3200/3300", variable=var, value=1, command=sel)
+R1.pack( anchor = W )
+
+R2 = Radiobutton(cen_ut, text="ECDIS FEA-2107/2807", variable=var, value=2, command=sel)
+R2.pack( anchor = W )
 
 tombol9 = teka.Button(cen_ut,text="Proses", command = proses )
 tombol9.pack()
