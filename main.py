@@ -31,6 +31,7 @@ def proses():
     rttl = ttl.get()
     rttt= ttt.get()
     rprau = prau.get()
+    rdowo = dowo.get()
     recdis=str(selhas())
 
     tpl = DocxTemplate('Python.docx')
@@ -39,8 +40,9 @@ def proses():
                     "ref":"Ref: CPA-2020-FTR-%s"%str(rref),
                     "TTT": "%s" %str(rttt),
                     "ecdis": "ECDIS Model %s" % str(recdis),
-                    "ship":"Onboard %s" %str(rprau)}
-               }
+                    "ship":"Onboard %s" %str(rprau),
+                    "dura": "%s" % str(rdowo)}
+                }
 
     sref= str(rref)
     sasma = str(rasma)
@@ -75,6 +77,10 @@ ttt.pack()
 lprau = teka.Label(cen_ut, text="Input Entry Nama Kapal").pack()
 prau = teka.Entry(cen_ut, width=70, borderwidth=5, fg='blue')
 prau.pack()
+
+teka.Label(cen_ut, text="Input Entry Durasi Training").pack()
+dowo = teka.Entry(cen_ut, width=70, borderwidth=5, fg='blue')
+dowo.pack()
 
 R1 = Radiobutton(cen_ut, text="ECDIS FMD-3200/3300", variable=var, value=1, command=sel)
 R1.pack( anchor = W )
