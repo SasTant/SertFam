@@ -37,7 +37,7 @@ def proses():
     tpl = DocxTemplate('Python.docx')
     context = {1:{  "nama":"%s" %str(rasma),
                     "TTL":"%s" %str(rttl),
-                    "ref":"Ref: CPA-2020-FTR-%s"%str(rref),
+                    "ref":"Ref: CPA-2021-FTR-%s"%str(rref),
                     "TTT": "%s" %str(rttt),
                     "ecdis": "ECDIS Model %s" % str(recdis),
                     "ship":"Onboard %s" %str(rprau),
@@ -50,7 +50,7 @@ def proses():
     jenber = " "+ sref + " "+ sasma + " " + sprau
 
     tpl.render(context[1])
-    tpl.save("CPA2020FTR%s.docx" %jenber)
+    tpl.save("CPA2021FTR%s.docx" %jenber)
 
     convert("CPA2020FTR%s.docx" %jenber, "C:/Users/QylaMeisya/Documents/Sertifikat Training Familiarrisasi ECDIS Photosop/sertfampy" )
 
