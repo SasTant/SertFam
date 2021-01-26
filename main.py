@@ -52,7 +52,7 @@ def proses():
     tpl.render(context[1])
     tpl.save("CPA2021FTR%s.docx" %jenber)
 
-    convert("CPA2020FTR%s.docx" %jenber, "C:/Users/QylaMeisya/Documents/Sertifikat Training Familiarrisasi ECDIS Photosop/sertfampy" )
+    convert("CPA2021FTR%s.docx" %jenber, "C:/Users/QylaMeisya/Documents/Sertifikat Training Familiarrisasi ECDIS Photosop/sertfampy" )
 
     label = teka.Label(cen_ut, text="Sert. %s Selesai ! Input Entry lagi / Tutup Program !" %str(rasma))
     label.pack()
